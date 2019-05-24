@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import mainstyled from 'styled-components'
 import Typography from '@material-ui/core/Typography';
 
-import './App.css';
+import './App.scss';
 import { withStyles } from '@material-ui/styles';
 
 const useStyles = {
@@ -32,7 +32,7 @@ class App extends React.Component {
         <Typography variant="h5" component="h3">
           This is a sheet of paper.
         </Typography>
-        <Typography component="p">
+        <Typography component="p" className="color-blue">
           Paper can be used to build surface or other elements for your application.
         </Typography>
       </MyBox>
