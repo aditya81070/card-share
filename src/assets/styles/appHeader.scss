@@ -1,0 +1,8 @@
+#appHeader {
+  @include media-breakpoint-down(xs) {
+    .user-icon {
+      display: none !important;
+    }
+  }
+  
+}
