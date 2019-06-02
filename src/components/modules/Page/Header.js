@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { HashLink as Link } from 'react-router-hash-link';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -43,7 +43,7 @@ function Header() {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const menuItems = [
-    { name: 'Home', path: '/' },
+    { name: 'Home', path: '/#home' },
     { name: 'About', path: '/#about' },
     { name: 'Features', path: '/#features' },
     { name: 'Sign Up', path: '/signup' },
@@ -68,7 +68,14 @@ function Header() {
     >
       {_.map(menuItems, item => (
         <MenuItem color="inherit" key={item.name}>
-          <p>{item.name}</p>
+          <Link
+            to={item.path}
+            smooth
+            style={{ color: 'black', textDecoration: 'none' }}
+            key={item.name}
+          >
+            <p>{item.name}</p>
+          </Link>
         </MenuItem>
       ))}
     </Menu>
@@ -76,7 +83,7 @@ function Header() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" className={classes.colorDefault} position="fixed">
+      <AppBar className={classes.colorDefault} position="fixed">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             CARD SHARE
@@ -84,11 +91,17 @@ function Header() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {_.map(menuItems, item => (
-                <Link to={item.path} style={{color: 'white', textDecoration: 'none'}}>
-                  <Button color="inherit" className="mx-1" key={item.name}>{item.name}</Button>
-                </Link>
-              )
-            )} 
+              <Link
+                to={item.path}
+                smooth
+                style={{ color: 'white', textDecoration: 'none' }}
+                key={item.name}
+              >
+                <Button color="inherit" className="mx-1">
+                  {item.name}
+                </Button>
+              </Link>
+            ))}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
