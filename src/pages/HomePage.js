@@ -10,9 +10,9 @@ class HomePage extends React.Component {
   render() {
     return (
       <PageWrapper>
-        <Banner background='bg-blue'/>
-        <About background='bg-red' />
-        <Features background='bg-blue' />
+        <Banner background='bg-blue' link='home'/>
+        <About background='bg-red' link='about'/>
+        <Features background='bg-blue' link='features'/>
       </PageWrapper>
     );
   }

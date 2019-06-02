@@ -30,7 +30,7 @@ class Features extends React.Component {
       }
     ];
     return (
-      <div className="container-fluid text-center features" id="features">
+      <div className="container-fluid text-center features">
         <div className="h-25">
           <h1 className="features-title py-5">FEATURES</h1>
         </div>
