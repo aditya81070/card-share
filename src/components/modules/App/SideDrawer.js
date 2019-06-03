@@ -42,7 +42,6 @@ class SideDrawer extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     const sideList = (
       <div
         className="side-drawer text-center justify-content-center"
