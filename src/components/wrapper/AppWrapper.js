@@ -7,7 +7,6 @@ import Header from '../modules/App/Header';
 
 class AppWrapper extends React.Component {
   render() {
-    console.log(this.props.children)
     return (
       <div>
         <Header />

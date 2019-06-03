@@ -67,16 +67,16 @@ function Header() {
       onClose={handleMobileMenuClose}
     >
       {_.map(menuItems, item => (
-        <MenuItem color="inherit" key={item.name}>
-          <Link
-            to={item.path}
-            smooth
-            style={{ color: 'black', textDecoration: 'none' }}
-            key={item.name}
-          >
+        <Link
+          to={item.path}
+          smooth
+          style={{ color: 'black', textDecoration: 'none' }}
+          key={item.name}
+        >
+          <MenuItem color="inherit" key={item.name}>
             <p>{item.name}</p>
-          </Link>
-        </MenuItem>
+          </MenuItem>
+        </Link>
       ))}
     </Menu>
   );

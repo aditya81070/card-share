@@ -143,9 +143,11 @@ class SignUp extends React.Component {
                 secondary
               />
               <div className="w-100 btn-cont my-3">
-                <Button secondary className="float-left p-2">
-                  Sign Up
-                </Button>
+                <Link to="/select-card">
+                  <Button secondary className="float-left p-2">
+                    Sign Up
+                  </Button>
+                </Link>
                 <Link to="/login">
                   <Button secondary className="float-right p-2">
                     Login
@@ -153,20 +155,24 @@ class SignUp extends React.Component {
                 </Link>
               </div>
               <div className="row justify-content-center my-4">
-                <Button secondary className="float-left p-2 social-btn">
-                  <img src={GoogleIcon} alt="google icon" className="mr-2" />
-                  Sign Up with Google
-                </Button>
+                <Link to="/select-card">
+                  <Button secondary className="float-left p-2 social-btn">
+                    <img src={GoogleIcon} alt="google icon" className="mr-2" />
+                    Sign Up with Google
+                  </Button>
+                </Link>
               </div>
               <div className="row justify-content-center my-4">
-                <Button secondary className="float-left p-2 social-btn">
-                  <img
-                    src={FacebookIcon}
-                    alt="facebook icon"
-                    className="mr-2"
-                  />
-                  Sign Up with Facebook
-                </Button>
+                <Link to="/select-card">
+                  <Button secondary className="float-left p-2 social-btn">
+                    <img
+                      src={FacebookIcon}
+                      alt="facebook icon"
+                      className="mr-2"
+                    />
+                    Sign Up with Facebook
+                  </Button>
+                </Link>
               </div>
             </form>
           </div>

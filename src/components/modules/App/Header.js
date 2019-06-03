@@ -72,11 +72,10 @@ class Header extends React.Component {
 
   render() {
     const menuItems = [
-      { name: 'Home', path: '/#home' },
-      { name: 'About', path: '/#about' },
-      { name: 'Features', path: '/#features' },
-      { name: 'Sign Up', path: '/signup' },
-      { name: 'Login', path: '/login' }
+      { name: 'Dashboard', path: '/dashboard' },
+      { name: 'Edit Card', path: '/create-card' },
+      { name: 'Edit Profile', path: '/edit-profile' },
+      { name: 'Logout', path: '/' }
     ];
     const { classes } = this.props;
     const isMenuOpen = Boolean(this.state.anchorEl);
@@ -89,16 +88,16 @@ class Header extends React.Component {
         onClose={this.handleMenuClose}
       >
         {_.map(menuItems, item => (
-          <MenuItem color="inherit" key={item.name}>
-            <Link
-              to={item.path}
-              smooth
-              style={{ color: 'black', textDecoration: 'none' }}
-              key={item.name}
-            >
+          <Link
+            to={item.path}
+            smooth
+            style={{ color: 'black', textDecoration: 'none' }}
+            key={item.name}
+          >
+            <MenuItem color="inherit" key={item.name}>
               <p>{item.name}</p>
-            </Link>
-          </MenuItem>
+            </MenuItem>
+          </Link>
         ))}
       </Menu>
     );

@@ -5,25 +5,12 @@ import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import InputField from '../widgets/InputField';
 import Button from '../widgets/Button';
-import MuiDialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
-import { withStyles } from '@material-ui/core/styles';
+import InputDialog from '../widgets/InputDialog';
 
 // File Imports
 import LoginImg from '../../assets/img/backgrounds/login.png';
 import GoogleIcon from '../../assets/img/icons/google.png';
 import FacebookIcon from '../../assets/img/icons/fb.png';
-
-const Dialog = withStyles(theme => ({
-  root: {
-    '& .MuiDialog-paper': {
-      width: '500px',
-      padding: '10px'
-    }
-  }
-}))(MuiDialog);
 
 class Login extends React.Component {
   constructor(props) {
@@ -45,39 +32,6 @@ class Login extends React.Component {
   }
 
   render() {
-    const ForgotPasswordDialog = (
-      <Dialog
-        open={this.state.open}
-        onClose={this.handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title">Forgot Password</DialogTitle>
-        <DialogContent>
-          {/* <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText> */}
-          <InputField
-            autoFocus
-            margin="dense"
-            id="email-username"
-            label="Email/Username"
-            type="text"
-            fullWidth
-            tertiary
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={this.handleClose} color="primary">
-            Submit
-          </Button>
-          <Button onClick={this.handleClose} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
-
     return (
       <div className="container-fluid text-center h-100" id="login">
         <div className="row">
@@ -109,9 +63,11 @@ class Login extends React.Component {
                 secondary
               />
               <div className="w-100 btn-cont my-3">
-                <Button secondary className="float-left p-2">
-                  Login
-                </Button>
+                <Link to="/dashboard">
+                  <Button secondary className="float-left p-2">
+                    Login
+                  </Button>
+                </Link>
                 <Link to="/signup">
                   <Button secondary className="float-right p-2">
                     Sign Up
@@ -127,20 +83,24 @@ class Login extends React.Component {
                 Forgot Password?
               </Typography>
               <div className="row justify-content-center my-4">
-                <Button secondary className="float-left p-2 social-btn">
-                  <img src={GoogleIcon} alt="google icon" className="mr-2" />
-                  Login with Google
-                </Button>
+                <Link to="/dashboard">
+                  <Button secondary className="float-left p-2 social-btn">
+                    <img src={GoogleIcon} alt="google icon" className="mr-2" />
+                    Login with Google
+                  </Button>
+                </Link>
               </div>
               <div className="row justify-content-center my-4">
-                <Button secondary className="float-left p-2 social-btn">
-                  <img
-                    src={FacebookIcon}
-                    alt="facebook icon"
-                    className="mr-2"
-                  />
-                  Login with Facebook
-                </Button>
+                <Link to="/dashboard">
+                  <Button secondary className="float-left p-2 social-btn">
+                    <img
+                      src={FacebookIcon}
+                      alt="facebook icon"
+                      className="mr-2"
+                    />
+                    Login with Facebook
+                  </Button>
+                </Link>
               </div>
             </form>
           </div>
@@ -152,7 +112,17 @@ class Login extends React.Component {
             />
           </div>
         </div>
-        {ForgotPasswordDialog}
+        <InputDialog
+          open={this.state.open}
+          handleClose={this.handleClose}
+          title="Forgot Password"
+          input={{
+            id: 'email-username',
+            label: 'Email/Username',
+            type: 'text'
+          }}
+          buttonLabel="Submit"
+        />
       </div>
     );
   }
