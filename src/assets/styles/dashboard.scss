@@ -1,0 +1,11 @@
+#dashboard {
+    min-height: 90vh;
+    max-width: 95vw;
+    .add-btn{
+        float: right;
+        position: fixed;
+        bottom:30px;
+        right:30px;
+        background-color: #009688;
+    }
+}
