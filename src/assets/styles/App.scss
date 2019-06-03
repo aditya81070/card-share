@@ -13,6 +13,8 @@
 @import './login.scss';
 @import './signup.scss';
 @import './appHeader.scss';
+@import './cards.scss';
+@import './dashboard.scss';
 
 // Backgrounds
 .bg-blue {
@@ -28,7 +30,7 @@
 }
 
 .bg-app {
-  background:url(../img/backgrounds/app.svg);
+  background: url(../img/backgrounds/app.svg);
   background-size: cover;
   background-color: #f6f6f6;
 }
@@ -44,4 +46,57 @@
 }
 .paper {
   min-height: 75vh;
+}
+
+.app-heading {
+  font-family: Roboto;
+  font-weight: bold !important;
+  font-size: 36px;
+  color: rgba(47, 128, 237, 0.87);
+}
+
+// Image Avtar Input Field
+$avtar-size: 150px;
+
+.avtar-img-cont {
+  display: inline-block;
+  height: $avtar-size;
+  .avtar-img {
+    position: relative;
+    width: $avtar-size;
+    height: $avtar-size;
+    border: solid 2px #4f4f4f;
+  }
+  .icon-overlay {
+    display: none;
+    position: relative;
+    top: (-$avtar-size);
+    right: 0;
+    // background-color: #f65556;
+    background-image: url('../img/avtar/avtar-overlay.png');
+    background-size: $avtar-size $avtar-size;
+    height: $avtar-size;
+    width: $avtar-size;
+    border-radius: 50%;
+    .icon {
+      position: absolute;
+      bottom: (-$avtar-size/45);
+      left: 0;
+      right: 0;
+    }
+  }
+}
+.avtar-img-cont:hover {
+  .icon-overlay {
+    display: block;
+  }
+}
+
+.side-drawer {
+  width: 300px;
+  .avtar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
 }
