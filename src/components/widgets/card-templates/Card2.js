@@ -5,7 +5,7 @@ import AddressIconDark from '../../../assets/img/icons/card-dark/address.png';
 import EmailIconDark from '../../../assets/img/icons/card-dark/email.png';
 import WebsiteIconDark from '../../../assets/img/icons/card-dark/website.png';
 
-class Card2 extends React.Component {
+export class Card2 extends React.Component {
   render() {
     return (
       <div className="card card2 mx-auto text-dark">
@@ -42,5 +42,3 @@ class Card2 extends React.Component {
     );
   }
 }
-
-export default Card2;

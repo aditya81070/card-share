@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 // Material UI Components
 import Typography from '@material-ui/core/Typography';
-import InputField from '../widgets/InputField';
-import Button from '../widgets/Button';
 import MuiDialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -14,9 +12,11 @@ import TickIcon from '@material-ui/icons/DoneOutline';
 import { withStyles } from '@material-ui/core/styles';
 
 // File Imports
-import SingUpImg from '../../assets/img/backgrounds/signup.png';
-import GoogleIcon from '../../assets/img/icons/google.png';
-import FacebookIcon from '../../assets/img/icons/fb.png';
+import InputField from '../../../components/widgets/InputField';
+import Button from '../../../components/widgets/Button';
+import SingUpImg from '../../../assets/img/backgrounds/signup.png';
+import GoogleIcon from '../../../assets/img/icons/google.png';
+import FacebookIcon from '../../../assets/img/icons/fb.png';
 
 const Dialog = withStyles(theme => ({
   root: {
@@ -27,7 +27,7 @@ const Dialog = withStyles(theme => ({
   }
 }))(MuiDialog);
 
-class SignUp extends React.Component {
+class SignUpPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -183,4 +183,4 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+export default SignUpPage;

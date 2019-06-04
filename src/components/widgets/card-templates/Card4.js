@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Card4 extends React.Component {
+export class Card4 extends React.Component {
   render() {
     return (
       <div className="card card4 mx-auto text-center text-dark">
@@ -18,5 +18,3 @@ class Card4 extends React.Component {
     );
   }
 }
-
-export default Card4;

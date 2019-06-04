@@ -1,8 +1,19 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+// Imports Bootstrap Libraries
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins/_breakpoints';
+
+// Import Fonts
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap');
+
+// Import Files
+@import './App.scss';
+@import '../../pages/home/styles/banner.scss';
+@import '../../pages/home/styles/about.scss';
+@import '../../pages/home/styles/features.scss';
+@import '../../pages/login/styles/login.scss';
+@import '../../pages/signup/styles/signup.scss';
+@import '../../components/modules/App/styles/appHeader.scss';
+@import '../../components/widgets/card-templates/styles/cards.scss';
+@import '../../pages/dashboard/styles/dashboard.scss';
+@import '../../components/widgets/widgets.scss';

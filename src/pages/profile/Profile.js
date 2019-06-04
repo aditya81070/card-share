@@ -3,17 +3,14 @@ import { Link } from 'react-router-dom';
 
 // Material UI
 import Paper from '@material-ui/core/Paper';
-
-import AppWrapper from '../components/wrapper/AppWrapper';
-import '../assets/styles/App.scss';
-
-// Material UI
 import Typography from '@material-ui/core/Typography';
-import InputField from '../components/widgets/InputField';
-import Button from '../components/widgets/Button';
-import AvtarInput from '../components/widgets/AvtarInput';
 
-class EditProfile extends React.Component {
+import AppWrapper from '../../components/wrapper/AppWrapper';
+import InputField from '../../components/widgets/InputField';
+import Button from '../../components/widgets/Button';
+import AvtarInput from '../../components/widgets/AvtarInput';
+
+export class Profile extends React.Component {
   render() {
     return (
       <AppWrapper>
@@ -77,5 +74,3 @@ class EditProfile extends React.Component {
     );
   }
 }
-
-export default EditProfile;

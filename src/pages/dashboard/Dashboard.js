@@ -7,11 +7,11 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 
-import InputDialog from '../components/widgets/InputDialog';
-import Card from '../components/widgets/Cards';
-import AppWrapper from '../components/wrapper/AppWrapper';
+import InputDialog from '../../components/widgets/InputDialog';
+import Card from '../../components/widgets/Cards';
+import AppWrapper from '../../components/wrapper/AppWrapper';
 
-class Dashboard extends React.Component {
+export class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,8 +33,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <AppWrapper>
-        <Paper className=" mx-auto my-3 pb-5" id="dashboard">
-          <div className="bg-primary row mx-0 py-2">
+          <div className="bg-primary search-bar py-2 mt-1 position-fixed w-100" style={{zIndex: 1300}}>
             <Paper className=" row col-10 col-md-8 col-lg-6 mx-auto px-0">
               <InputBase
                 className="bg-light col-10 col-md-11"
@@ -49,6 +48,7 @@ class Dashboard extends React.Component {
               </button>
             </Paper>
           </div>
+        <Paper className="mx-auto mt-5 pb-5" id="dashboard">
           <div className="d-flex flex-wrap justify-content-center">
             <div className="mx-5 mt-5">
               <Card variant="card1" />
@@ -99,7 +99,12 @@ class Dashboard extends React.Component {
               <Card variant="card5" />
             </div>
           </div>
-          <Fab color="primary" aria-label="Add" className="add-btn" onClick={this.handleClickOpen}>
+          <Fab
+            color="primary"
+            aria-label="Add"
+            className="add-btn"
+            onClick={this.handleClickOpen}
+          >
             <AddIcon />
           </Fab>
         </Paper>
@@ -118,5 +123,3 @@ class Dashboard extends React.Component {
     );
   }
 }
-
-export default Dashboard;

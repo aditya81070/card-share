@@ -1,18 +1,17 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Material UI Components
 import Typography from '@material-ui/core/Typography';
-import InputField from '../widgets/InputField';
-import Button from '../widgets/Button';
-import InputDialog from '../widgets/InputDialog';
 
-// File Imports
-import LoginImg from '../../assets/img/backgrounds/login.png';
-import GoogleIcon from '../../assets/img/icons/google.png';
-import FacebookIcon from '../../assets/img/icons/fb.png';
+import InputField from '../../../components/widgets/InputField';
+import Button from '../../../components/widgets/Button';
+import InputDialog from '../../../components/widgets/InputDialog';
+import SocialButton from '../../../components/widgets/SocialButton'
+import LoginImg from '../../../assets/img/backgrounds/login.png';
 
-class Login extends React.Component {
+class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -84,22 +83,12 @@ class Login extends React.Component {
               </Typography>
               <div className="row justify-content-center my-4">
                 <Link to="/dashboard">
-                  <Button secondary className="float-left p-2 social-btn">
-                    <img src={GoogleIcon} alt="google icon" className="mr-2" />
-                    Login with Google
-                  </Button>
+                  <SocialButton variant="google" />
                 </Link>
               </div>
               <div className="row justify-content-center my-4">
                 <Link to="/dashboard">
-                  <Button secondary className="float-left p-2 social-btn">
-                    <img
-                      src={FacebookIcon}
-                      alt="facebook icon"
-                      className="mr-2"
-                    />
-                    Login with Facebook
-                  </Button>
+                  <SocialButton variant="facebook" />
                 </Link>
               </div>
             </form>
@@ -128,4 +117,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default LoginPage;

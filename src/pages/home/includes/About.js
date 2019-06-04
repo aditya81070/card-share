@@ -1,6 +1,6 @@
 import React from 'react';
 
-class About extends React.Component {
+export class About extends React.Component {
   render() {
     return (
       <div className="container-fluid text-center about">
@@ -16,12 +16,10 @@ class About extends React.Component {
             your wallet.
             <br />
             <br />
-            You’r card is just one click away !!
+            Your card is just one click away !!
           </p>
         </div>
       </div>
     );
   }
 }
-
-export default About;

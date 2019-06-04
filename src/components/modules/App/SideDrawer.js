@@ -60,7 +60,7 @@ class SideDrawer extends React.Component {
         <Button className="mt-5 mb-2 col-8" onClick={this.handleClickOpen}>
           Share Your Card
         </Button>
-        <Link to="/create-card">
+        <Link to="/select-card">
           <Button className=" mt-2 mb-3 col-8">Edit Your Card</Button>
         </Link>
       </div>

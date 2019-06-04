@@ -1,0 +1,23 @@
+#login {
+  .form {
+    background: #2f80ed;
+    min-height: 75vh;
+  }
+  .login-img {
+    min-height: 75vh;
+  }
+  .btn-cont {
+    button {
+      width: 40%;
+    }
+  }
+  .btn-cont {
+    min-height: 50px;
+  }
+
+  @include media-breakpoint-down(md) {
+    .login-img-cont {
+      display: none;
+    }
+  }
+}

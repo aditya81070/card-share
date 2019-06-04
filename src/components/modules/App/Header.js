@@ -1,4 +1,5 @@
 import React from 'react';
+import * as _ from 'lodash';
 import { HashLink as Link } from 'react-router-hash-link';
 
 // Material UI
@@ -12,10 +13,8 @@ import Menu from '@material-ui/core/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import MenuIcon from '@material-ui/icons/MenuSharp';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import SideDrawer from './SideDrawer';
 
-// Other Dependencies
-import * as _ from 'lodash';
+import SideDrawer from './SideDrawer';
 
 const styles = {
   colorDefault: {
@@ -73,8 +72,8 @@ class Header extends React.Component {
   render() {
     const menuItems = [
       { name: 'Dashboard', path: '/dashboard' },
-      { name: 'Edit Card', path: '/create-card' },
-      { name: 'Edit Profile', path: '/edit-profile' },
+      { name: 'Edit Card', path: '/edit-card' },
+      { name: 'Edit Profile', path: '/profile' },
       { name: 'Logout', path: '/' }
     ];
     const { classes } = this.props;

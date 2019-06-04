@@ -1,0 +1,17 @@
+// Social media buttons
+.social-btn {
+  width: 35vmin;
+  font-size: 14px !important;
+  @include media-breakpoint-down(lg) {
+    width: 24vmin;
+    font-size: 13px !important;
+  } 
+  @include media-breakpoint-down(sm) {
+    width: 35vmin;
+    font-size: 13px !important; 
+  }
+  @include media-breakpoint-down(xs) {
+    width: 60vmin;
+    font-size: 12px !important;
+  }
+}

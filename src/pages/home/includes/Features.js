@@ -6,11 +6,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 // File Imports
-import Share from '../../assets/img/icons/share.png';
-import QRIcon from '../../assets/img/icons/qr.png';
-import CardIcon from '../../assets/img/icons/card.png';
+import Share from '../../../assets/img/icons/share.png';
+import QRIcon from '../../../assets/img/icons/qr.png';
+import CardIcon from '../../../assets/img/icons/card.png';
 
-class Features extends React.Component {
+export class Features extends React.Component {
   render() {
     const featureCards = [
       {
@@ -55,5 +55,3 @@ class Features extends React.Component {
     );
   }
 }
-
-export default Features;

@@ -3,16 +3,13 @@ import { Link } from 'react-router-dom';
 
 // Material UI
 import Paper from '@material-ui/core/Paper';
-
-import AppWrapper from '../components/wrapper/AppWrapper';
-import '../assets/styles/App.scss';
-
-// Material UI
 import Typography from '@material-ui/core/Typography';
-import InputField from '../components/widgets/InputField';
-import Button from '../components/widgets/Button';
 
-class CreateCardPage extends React.Component {
+import AppWrapper from '../../components/wrapper/AppWrapper';
+import InputField from '../../components/widgets/InputField';
+import Button from '../../components/widgets/Button';
+
+export class EditCard extends React.Component {
   render() {
     return (
       <AppWrapper>
@@ -125,5 +122,3 @@ class CreateCardPage extends React.Component {
     );
   }
 }
-
-export default CreateCardPage;

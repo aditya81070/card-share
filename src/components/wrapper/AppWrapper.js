@@ -1,7 +1,5 @@
 import React from 'react';
 
-// Material UI
-
 // File Imports
 import Header from '../modules/App/Header';
 
@@ -10,10 +8,7 @@ class AppWrapper extends React.Component {
     return (
       <div>
         <Header />
-        <div className="app-cont bg-app">
-           {this.props.children}
-        </div>
-
+        <div className="app-cont bg-app">{this.props.children}</div>
       </div>
     );
   }

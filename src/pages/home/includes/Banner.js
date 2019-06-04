@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
 // File imports
-import Men from '../../assets/img/backgrounds/men-img.png';
+import Men from '../../../assets/img/backgrounds/men-img.png';
 
-class Banner extends React.Component {
+export class Banner extends React.Component {
   render() {
     return (
       <div className="container-fluid banner">
@@ -36,5 +36,3 @@ class Banner extends React.Component {
     );
   }
 }
-
-export default Banner;

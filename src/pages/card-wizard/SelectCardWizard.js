@@ -3,15 +3,13 @@ import { Link } from 'react-router-dom';
 
 // Material UI
 import Paper from '@material-ui/core/Paper';
-
-import AppWrapper from '../components/wrapper/AppWrapper';
-import '../assets/styles/App.scss';
+import Typography from '@material-ui/core/Typography';
 
 // Material UI
-import Typography from '@material-ui/core/Typography';
-import Card from '../components/widgets/Cards';
+import AppWrapper from '../../components/wrapper/AppWrapper';
+import Card from '../../components/widgets/Cards';
 
-class SelectCardWizard extends React.Component {
+export class SelectCardWizard extends React.Component {
   render() {
     return (
       <AppWrapper>
@@ -27,27 +25,27 @@ class SelectCardWizard extends React.Component {
             Select Your Card
           </Typography>
           <div className="d-flex flex-wrap justify-content-center">
-            <Link to="/create-card">
+            <Link to="/edit-card">
               <div className="mx-5 mt-5">
                 <Card variant="card1" />
               </div>
             </Link>
-            <Link to="/create-card">
+            <Link to="/edit-card">
               <div className="mx-5 mt-5">
                 <Card variant="card2" />
               </div>
             </Link>
-            <Link to="/create-card">
+            <Link to="/edit-card">
               <div className="mx-5 mt-5">
                 <Card variant="card3" />
               </div>
             </Link>
-            <Link to="/create-card">
+            <Link to="/edit-card">
               <div className="mx-5 mt-5">
                 <Card variant="card4" />
               </div>
             </Link>
-            <Link to="/create-card">
+            <Link to="/edit-card">
               <div className="mx-5 mt-5">
                 <Card variant="card5" />
               </div>
@@ -58,5 +56,3 @@ class SelectCardWizard extends React.Component {
     );
   }
 }
-
-export default SelectCardWizard;

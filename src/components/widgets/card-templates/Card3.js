@@ -5,7 +5,7 @@ import AddressIconLight from '../../../assets/img/icons/card-light/address.png';
 import EmailIconLight from '../../../assets/img/icons/card-light/email.png';
 import WebsiteIconLight from '../../../assets/img/icons/card-light/website.png';
 
-class Card3 extends React.Component {
+export class Card3 extends React.Component {
   render() {
     return (
       <div className="card card3 mx-auto text-light">
@@ -42,5 +42,3 @@ class Card3 extends React.Component {
     );
   }
 }
-
-export default Card3;

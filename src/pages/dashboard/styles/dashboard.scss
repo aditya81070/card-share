@@ -1,0 +1,16 @@
+#dashboard {
+    min-height: calc(100vh - 64px - 44px);
+    max-width: 100vw;
+    .add-btn{
+        float: right;
+        position: fixed;
+        bottom:30px;
+        right:30px;
+        background-color: #009688;
+    }
+}
+@include media-breakpoint-down(sm) {
+    .search-bar{
+        margin-top: 0 !important;
+    }        
+}    

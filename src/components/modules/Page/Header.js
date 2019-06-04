@@ -1,4 +1,5 @@
 import React from 'react';
+import * as _ from 'lodash';
 import { HashLink as Link } from 'react-router-hash-link';
 
 // Material UI
@@ -11,9 +12,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
-
-// Other Dependencies
-import * as _ from 'lodash';
 
 const useStyles = makeStyles(theme => ({
   colorDefault: {

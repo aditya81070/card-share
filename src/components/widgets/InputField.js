@@ -41,7 +41,7 @@ const CssTextField = {
     },
     '& label.Mui-focused': {
       color: 'black'
-    },
+    }
   }
 };
 

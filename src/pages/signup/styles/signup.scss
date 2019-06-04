@@ -1,0 +1,25 @@
+#signup {
+  .form {
+    background: #2f80ed;
+    min-height: 75vh;
+  }
+  .signup-img-cont {
+    background: #cff2ea;
+  }
+  .singup-img {
+    max-height: 75vh;
+  }
+  .btn-cont {
+    button {
+      width: 40%;
+    }
+  }
+  .btn-cont {
+    min-height: 50px;
+  }
+  @include media-breakpoint-down(md) {
+    .signup-img-cont {
+      display: none;
+    }
+  }
+}
