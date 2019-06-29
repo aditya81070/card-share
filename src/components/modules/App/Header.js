@@ -79,6 +79,10 @@ class Header extends React.Component {
         name: 'Edit Card',
         path: `/select-card/${localStorage.getItem('userId')}`
       },
+      {
+        name: 'Edit Profile',
+        path: `/profile/${localStorage.getItem('userId')}`
+      },
       { name: 'Logout', path: '/' }
     ];
     const { classes } = this.props;
