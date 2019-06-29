@@ -10,31 +10,31 @@ export class Card2 extends React.Component {
     return (
       <div className="card card2 mx-auto text-dark">
         <div>
-          <span className="name">Full Name</span>
+          <span className="name">{this.props.details.name}</span>
         </div>
         <div>
-          <span className="designation">Designation</span>
+          <span className="designation">{this.props.details.designation}</span>
         </div>
         <div>
-          <span className="company-name">Company Name</span>
+          <span className="company-name">{this.props.details.company}</span>
         </div>
         <div className="content">
           <ul>
             <li>
               <img src={PhoneIconDark} alt="phone no" className="mr-2 icon" />
-              Phone No., Alternate no.
+              {this.props.details.contact}, {this.props.details.alternateContact}
             </li>
             <li>
               <img src={EmailIconDark} alt="email" className="mr-2 icon" />
-              sample@email.com
+              {this.props.details.email}
             </li>
             <li>
               <img src={WebsiteIconDark} alt="website" className="mr-2 icon" />
-              www.website.com
+              {this.props.details.website}
             </li>
             <li>
               <img src={AddressIconDark} alt="address" className="mr-2 icon" />
-              street, city, state, country, pincode
+              {this.props.details.addressOffice}
             </li>
           </ul>
         </div>

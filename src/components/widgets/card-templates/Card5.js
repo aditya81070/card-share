@@ -10,34 +10,35 @@ export class Card5 extends React.Component {
     return (
       <div className="card card5 mx-auto text-light">
         <div>
-          <span className="name">Full Name</span>
+          <span className="name">{this.props.details.name}</span>
         </div>
         <div>
-          <span className="designation">Designation</span>
+          <span className="designation">{this.props.details.designation}</span>
         </div>
         <div>
-          <span className="company-name">Company Name</span>
+          <span className="company-name">{this.props.details.company}</span>
         </div>
         <div className="content">
           <ul>
             <li>
-              Phone No., Alternate no.
+              {this.props.details.contact},{' '}
+              {this.props.details.alternateContact}
               <img src={PhoneIconLight} alt="phone no" className="ml-2 icon" />
             </li>
             <li>
-              sample@email.com
+              {this.props.details.email}
               <img src={EmailIconLight} alt="email" className="ml-2 icon" />
             </li>
             <li>
-              www.website.com
+              {this.props.details.website}
               <img src={WebsiteIconLight} alt="website" className="ml-2 icon" />
             </li>
             <li>
-              street, city, state, country, pincode
+              {this.props.details.addressOffice}
               <img src={AddressIconLight} alt="address" className="ml-2 icon" />
             </li>
             <li>
-              street, city, state, country, pincode
+              {this.props.details.addressHome}
               <img src={AddressIconLight} alt="address" className="ml-2 icon" />
             </li>
           </ul>

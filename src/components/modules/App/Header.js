@@ -71,9 +71,10 @@ class Header extends React.Component {
 
   render() {
     const menuItems = [
-      { name: 'Dashboard', path: '/dashboard' },
-      { name: 'Edit Card', path: '/edit-card' },
-      { name: 'Edit Profile', path: '/profile' },
+      {
+        name: 'Edit Card',
+        path: `/select-card/${localStorage.getItem('userId')}`
+      },
       { name: 'Logout', path: '/' }
     ];
     const { classes } = this.props;
