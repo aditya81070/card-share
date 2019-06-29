@@ -8,7 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
 // File Imports
-import InputDialog from '../../widgets/InputDialog';
+import InputDialog from './InputDialog';
 import Avtar from '../../../assets/img/avtar/amrit.jpeg';
 import QR from '../../../assets/img/qr.png';
 import Button from '../../widgets/Button';
@@ -60,11 +60,12 @@ class SideDrawer extends React.Component {
         <Button className="mt-5 mb-2 col-8" onClick={this.handleClickOpen}>
           Share Your Card
         </Button>
-        <Link to="/select-card">
+        <Link to={`/select-card/${localStorage.getItem('userId')}`}>
           <Button className=" mt-2 mb-3 col-8">Edit Your Card</Button>
         </Link>
       </div>
     );
+
 
     return (
       <div>
@@ -78,13 +79,6 @@ class SideDrawer extends React.Component {
         <InputDialog
           open={this.state.open}
           handleClose={this.handleClose}
-          title="Share Card"
-          input={{
-            id: 'email-username',
-            label: 'Email/Username',
-            type: 'text'
-          }}
-          buttonLabel="Submit"
         />
       </div>
     );
