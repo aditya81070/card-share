@@ -1,6 +1,6 @@
 import React from 'react';
 import * as _ from 'lodash';
-import { HashLink as Link } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 
 // Material UI
 import { withStyles } from '@material-ui/core/styles';
@@ -82,6 +82,10 @@ class Header extends React.Component {
       {
         name: 'Edit Profile',
         path: `/profile/${localStorage.getItem('userId')}`
+      },
+      {
+        name: 'Reset Password',
+        path: `/reset-password/${localStorage.getItem('userId')}`
       },
       { name: 'Logout', path: '/' }
     ];

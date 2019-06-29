@@ -8,7 +8,8 @@ import {
   EditCard,
   Profile,
   SelectCardWizard,
-  Dashboard
+  Dashboard,
+  ResetPassword
 } from './pages';
 
 class Routes extends React.Component {
@@ -23,6 +24,7 @@ class Routes extends React.Component {
           <Route path="/profile/:userId" exact component={Profile} />
           <Route path="/select-card/:userId" exact component={SelectCardWizard} />
           <Route path="/dashboard/:userId" exact component={Dashboard} />
+          <Route path="/reset-password/:userId" exact component={ResetPassword} />
         </Switch>
       </BrowserRouter>
     );
