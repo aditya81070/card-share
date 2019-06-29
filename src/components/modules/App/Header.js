@@ -72,6 +72,10 @@ class Header extends React.Component {
   render() {
     const menuItems = [
       {
+        name: 'Dashboard',
+        path: `/dashboard/${localStorage.getItem('userId')}`
+      },
+      {
         name: 'Edit Card',
         path: `/select-card/${localStorage.getItem('userId')}`
       },
