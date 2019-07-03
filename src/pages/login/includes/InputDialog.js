@@ -2,14 +2,14 @@ import React from 'react';
 import axios from 'axios';
 
 import MuiDialog from '@material-ui/core/Dialog';
-import InputField from '../../../components/widgets/InputField';
+import { TertiaryTextField as InputField } from '../../../components/widgets/InputField';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { withStyles } from '@material-ui/core/styles';
 
-import Button from '../../../components/widgets/Button';
+import { PrimaryButton as Button } from '../../../components/widgets/Button';
 
 import { URL } from '../../../config';
 
@@ -68,7 +68,7 @@ class InputDialog extends React.Component {
             Kindly check your mail for new temporary password.
           </DialogContentText>
           <InputField
-            autoFocus
+            autoFocus={true}
             margin="dense"
             id="email"
             label="Email"
@@ -76,7 +76,7 @@ class InputDialog extends React.Component {
             onChange={this.handleChange}
             value={this.state.email}
             fullWidth
-            tertiary
+            requried={true}
           />
         </DialogContent>
         <DialogActions>

@@ -3,8 +3,19 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 
-const CssTextField = {
-  secondary: {
+function BaseTextField(props) {
+  const { classes } = props;
+  return (
+    <TextField {...props} className={`${props.className} ${classes.root}`} />
+  );
+}
+
+export const PrimaryTextField = (props) => {
+  return <TextField {...this.props} />;
+}
+
+export const SecondaryTextField = withStyles({
+  root: {
     '& label.Mui-focused': {
       color: 'white'
     },
@@ -29,8 +40,11 @@ const CssTextField = {
     '&:hover .MuiFormLabel-root': {
       color: '#ffc107'
     }
-  },
-  tertiary: {
+  }
+})(BaseTextField);
+
+export const TertiaryTextField = withStyles({
+  root: {
     '& .MuiInput-underline:after': {
       borderBottomColor: '#009688',
       borderBottomWidth: '3px'
@@ -43,26 +57,4 @@ const CssTextField = {
       color: 'black'
     }
   }
-};
-
-class InputField extends React.Component {
-  render() {
-    const { classes } = this.props;
-    let property = this.props.primary
-      ? ''
-      : this.props.secondary
-      ? classes.secondary
-      : this.props.tertiary
-      ? classes.tertiary
-      : '';
-
-    return (
-      <TextField
-        {...this.props}
-        className={`${this.props.className} ${property}`}
-      />
-    );
-  }
-}
-
-export default withStyles(CssTextField)(InputField);
+})(BaseTextField);

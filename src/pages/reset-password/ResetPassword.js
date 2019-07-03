@@ -7,8 +7,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import AppWrapper from '../../components/wrapper/AppWrapper';
-import InputField from '../../components/widgets/InputField';
-import Button from '../../components/widgets/Button';
+import { TertiaryTextField as InputField } from '../../components/widgets/InputField';
+import { PrimaryButton as Button } from '../../components/widgets/Button';
 
 import { URL } from '../../config';
 
@@ -48,8 +48,7 @@ export class ResetPassword extends React.Component {
       })
         .then(res => res)
         .then(val => {
-          console.log(val)
-          this.setState({ redirect: true })
+          this.setState({ redirect: true });
         })
         .catch(err => console.log(err));
     }
@@ -80,8 +79,9 @@ export class ResetPassword extends React.Component {
                 type="password"
                 value={this.state.name}
                 onChange={this.handleChange}
-                tertiary
-                required
+                required={true}
+                autoComplete="on"
+                autoFocus={true}
               />
               <InputField
                 name="password"
@@ -92,7 +92,8 @@ export class ResetPassword extends React.Component {
                 type="password"
                 value={this.state.contact}
                 onChange={this.handleChange}
-                tertiary
+                required={true}
+                autoComplete="on"
               />
               <InputField
                 name="confirmPassword"
@@ -103,7 +104,8 @@ export class ResetPassword extends React.Component {
                 type="password"
                 value={this.state.contact}
                 onChange={this.handleChange}
-                tertiary
+                required={true}
+                autoComplete="on"
               />
               <Button className="my-4" type="submit">
                 Change Password
@@ -113,7 +115,9 @@ export class ResetPassword extends React.Component {
         </AppWrapper>
       );
     } else {
-      return <Redirect push to={`/dashboard/${this.props.match.params.userId}`} />;
+      return (
+        <Redirect push to={`/dashboard/${this.props.match.params.userId}`} />
+      );
     }
   }
 }

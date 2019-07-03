@@ -16,8 +16,14 @@ import TickIcon from '@material-ui/icons/DoneOutline';
 import { withStyles } from '@material-ui/core/styles';
 
 // File Imports
-import InputField from '../../../components/widgets/InputField';
-import Button from '../../../components/widgets/Button';
+import {
+  SecondaryTextField as InputField,
+  TertiaryTextField
+} from '../../../components/widgets/InputField';
+import {
+  PrimaryButton,
+  SecondaryButton
+} from '../../../components/widgets/Button';
 import SingUpImg from '../../../assets/img/backgrounds/signup.png';
 import GoogleIcon from '../../../assets/img/icons/google.png';
 import FacebookIcon from '../../../assets/img/icons/fb.png';
@@ -61,7 +67,10 @@ class SignUpPage extends React.Component {
       .then(val => {
         localStorage.setItem('token', val.token.accessToken);
         localStorage.setItem('userId', val.user.id);
-        this.setState({ redirect: true, redirectPath: `/select-card/${val.user.id}` });
+        this.setState({
+          redirect: true,
+          redirectPath: `/select-card/${val.user.id}`
+        });
       })
       .catch(err => console.log(err));
   }
@@ -85,7 +94,7 @@ class SignUpPage extends React.Component {
       >
         <DialogTitle id="form-dialog-title">Forgot Password</DialogTitle>
         <DialogContent>
-          <InputField
+          <TertiaryTextField
             autoFocus
             margin="dense"
             name="email-username"
@@ -96,12 +105,8 @@ class SignUpPage extends React.Component {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleClose} color="primary">
-            Submit
-          </Button>
-          <Button onClick={this.handleClose} color="primary">
-            Close
-          </Button>
+          <PrimaryButton onClick={this.handleClose}>Submit</PrimaryButton>
+          <PrimaryButton onClick={this.handleClose}>Close</PrimaryButton>
         </DialogActions>
       </Dialog>
     );
@@ -125,7 +130,10 @@ class SignUpPage extends React.Component {
               >
                 Sign Up
               </Typography>
-              <form className="w-75 justify-content-center mx-auto">
+              <form
+                className="w-75 justify-content-center mx-auto"
+                onSubmit={this.handleSubmit}
+              >
                 <InputField
                   name="name"
                   label="Name"
@@ -133,8 +141,10 @@ class SignUpPage extends React.Component {
                   className="w-100 my-3"
                   margin="normal"
                   type="text"
-                  secondary
                   onChange={this.handleChange}
+                  autoComplete="on"
+                  autoFocus={true}
+                  required={true}
                 />
                 <InputField
                   name="email"
@@ -143,8 +153,9 @@ class SignUpPage extends React.Component {
                   className="w-100 my-3"
                   margin="normal"
                   type="email"
-                  secondary
                   onChange={this.handleChange}
+                  autoComplete="on"
+                  required={true}
                 />
                 <InputField
                   name="username"
@@ -160,8 +171,9 @@ class SignUpPage extends React.Component {
                       </InputAdornment>
                     )
                   }}
-                  secondary
                   onChange={this.handleChange}
+                  autoComplete="on"
+                  required={true}
                 />
                 <InputField
                   name="password"
@@ -170,45 +182,42 @@ class SignUpPage extends React.Component {
                   className="w-100 my-3"
                   margin="normal"
                   type="password"
-                  secondary
                   onChange={this.handleChange}
+                  autoComplete="on"
+                  required={true}
                 />
                 <div className="w-100 btn-cont my-3">
-                  <Button
-                    secondary
-                    className="float-left p-2"
-                    onClick={this.handleSubmit}
-                  >
+                  <SecondaryButton className="float-left p-2" type="submit">
                     Sign Up
-                  </Button>
+                  </SecondaryButton>
                   <Link to="/login">
-                    <Button secondary className="float-right p-2">
+                    <SecondaryButton className="float-right p-2">
                       Login
-                    </Button>
+                    </SecondaryButton>
                   </Link>
                 </div>
                 <div className="row justify-content-center my-4">
                   <Link to="/select-card">
-                    <Button secondary className="float-left p-2 social-btn">
+                    <SecondaryButton className="float-left p-2 social-btn">
                       <img
                         src={GoogleIcon}
                         alt="google icon"
                         className="mr-2"
                       />
                       Sign Up with Google
-                    </Button>
+                    </SecondaryButton>
                   </Link>
                 </div>
                 <div className="row justify-content-center my-4">
                   <Link to="/select-card">
-                    <Button secondary className="float-left p-2 social-btn">
+                    <SecondaryButton className="float-left p-2 social-btn">
                       <img
                         src={FacebookIcon}
                         alt="facebook icon"
                         className="mr-2"
                       />
                       Sign Up with Facebook
-                    </Button>
+                    </SecondaryButton>
                   </Link>
                 </div>
               </form>

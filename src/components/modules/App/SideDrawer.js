@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import InputDialog from './InputDialog';
 import Avtar from '../../../assets/img/avtar/amrit.jpeg';
 import QR from '../../../assets/img/qr.png';
-import Button from '../../widgets/Button';
+import { PrimaryButton } from '../../widgets/Button';
 
 const styles = {
   list: {
@@ -57,15 +57,19 @@ class SideDrawer extends React.Component {
         <Divider />
         <img src={QR} alt="QR code" className="col-8" />
         <Divider />
-        <Button className="mt-5 mb-2 col-8" onClick={this.handleClickOpen}>
+        <PrimaryButton
+          className="mt-5 mb-2 col-8"
+          onClick={this.handleClickOpen}
+        >
           Share Your Card
-        </Button>
+        </PrimaryButton>
         <Link to={`/select-card/${localStorage.getItem('userId')}`}>
-          <Button className=" mt-2 mb-3 col-8">Edit Your Card</Button>
+          <PrimaryButton className=" mt-2 mb-3 col-8">
+            Edit Your Card
+          </PrimaryButton>
         </Link>
       </div>
     );
-
 
     return (
       <div>
@@ -76,10 +80,7 @@ class SideDrawer extends React.Component {
         >
           {sideList}
         </SwipeableDrawer>
-        <InputDialog
-          open={this.state.open}
-          handleClose={this.handleClose}
-        />
+        <InputDialog open={this.state.open} handleClose={this.handleClose} />
       </div>
     );
   }

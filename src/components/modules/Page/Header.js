@@ -67,7 +67,6 @@ function Header() {
       {_.map(menuItems, item => (
         <Link
           to={item.path}
-          smooth
           style={{ color: 'black', textDecoration: 'none' }}
           key={item.name}
         >
@@ -91,7 +90,6 @@ function Header() {
             {_.map(menuItems, item => (
               <Link
                 to={item.path}
-                smooth
                 style={{ color: 'white', textDecoration: 'none' }}
                 key={item.name}
               >

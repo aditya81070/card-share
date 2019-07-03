@@ -6,8 +6,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import { withStyles } from '@material-ui/core/styles';
-import InputField from '../../widgets/InputField';
-import Button from '../../widgets/Button';
+import { TertiaryTextField as InputField } from '../../widgets/InputField';
+import { PrimaryButton } from '../../widgets/Button';
 
 import { URL } from '../../../config';
 
@@ -65,23 +65,23 @@ class InputDialog extends React.Component {
         <DialogTitle id="form-dialog-title">Share Card</DialogTitle>
         <DialogContent>
           <InputField
-            autoFocus
+            autoFocus={true}
             margin="dense"
             name="username"
             label="Username"
             type="text"
             onChange={this.handleChange}
             fullWidth
-            tertiary
+            required={true}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleSubmit} color="primary">
+          <PrimaryButton onClick={this.handleSubmit} color="primary">
             Submit
-          </Button>
-          <Button onClick={this.props.handleClose} color="primary">
+          </PrimaryButton>
+          <PrimaryButton onClick={this.props.handleClose} color="primary">
             Close
-          </Button>
+          </PrimaryButton>
         </DialogActions>
       </Dialog>
     );

@@ -76,8 +76,12 @@ class Header extends React.Component {
         path: `/dashboard/${localStorage.getItem('userId')}`
       },
       {
-        name: 'Edit Card',
+        name: 'Select Card',
         path: `/select-card/${localStorage.getItem('userId')}`
+      },
+      {
+        name: 'Edit Card',
+        path: `/edit-card/${localStorage.getItem('userId')}`
       },
       {
         name: 'Edit Profile',
@@ -102,7 +106,6 @@ class Header extends React.Component {
         {_.map(menuItems, item => (
           <Link
             to={item.path}
-            smooth
             style={{ color: 'black', textDecoration: 'none' }}
             key={item.name}
           >

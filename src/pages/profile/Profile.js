@@ -1,27 +1,29 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import * as _ from 'lodash';
 
 // Material UI
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import AppWrapper from '../../components/wrapper/AppWrapper';
-import InputField from '../../components/widgets/InputField';
-import Button from '../../components/widgets/Button';
+import { TertiaryTextField as InputField } from '../../components/widgets/InputField';
+import { PrimaryButton as Button } from '../../components/widgets/Button';
 import AvtarInput from '../../components/widgets/AvtarInput';
 
 import { URL } from '../../config';
+import { transform } from '../../utils/transform' 
 export class Profile extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       redirect: false,
-      fields: ['name', 'email', 'username', 'contact']
+      name: '',
+      email: '',
+      username: '',
+      contact: ''
     };
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -36,7 +38,7 @@ export class Profile extends React.Component {
     })
       .then(res => res.data)
       .then(val => {
-        this.setState(_.pick(val, this.state.fields));
+        this.setState(transform(val));
       })
       .catch(err => console.log(err));
   }
@@ -53,7 +55,7 @@ export class Profile extends React.Component {
     axios({
       method: 'patch',
       url: `${URL}/users/${this.props.match.params.userId}`,
-      data: { ..._.pick(this.state, this.state.fields) },
+      data: transform(this.state),
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       config: { headers: { 'Content-Type': 'application/json' } }
     })
@@ -84,7 +86,7 @@ export class Profile extends React.Component {
             >
               Edit Profile
             </Typography>
-            <form className="w-75 mx-auto">
+            <form className="w-75 mx-auto" onSubmit={this.handleSubmit}>
               <AvtarInput />
               <InputField
                 name="name"
@@ -95,7 +97,9 @@ export class Profile extends React.Component {
                 type="text"
                 value={this.state.name}
                 onChange={this.handleChange}
-                tertiary
+                autoComplete="on"
+                required={true}
+                autoFocus={true}
               />
               <InputField
                 name="email"
@@ -106,7 +110,8 @@ export class Profile extends React.Component {
                 type="email"
                 value={this.state.email}
                 onChange={this.handleChange}
-                tertiary
+                autoComplete="on"
+                required={true}
               />
               <InputField
                 name="contact"
@@ -117,7 +122,7 @@ export class Profile extends React.Component {
                 type="tel"
                 value={this.state.contact}
                 onChange={this.handleChange}
-                tertiary
+                autoComplete="on"
               />
               <InputField
                 name="username"
@@ -128,13 +133,10 @@ export class Profile extends React.Component {
                 type="text"
                 value={this.state.username}
                 onChange={this.handleChange}
-                tertiary
+                autoComplete="on"
+                required={true}
               />
-              <Button
-                className="my-4"
-                type="submit"
-                onClick={this.handleSubmit}
-              >
+              <Button className="my-4" type="submit">
                 Save Profile
               </Button>
             </form>

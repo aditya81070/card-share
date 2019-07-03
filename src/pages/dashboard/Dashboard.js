@@ -18,10 +18,12 @@ export class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      search: ''
     };
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   async componentDidMount() {
@@ -35,8 +37,21 @@ export class Dashboard extends React.Component {
       .then(res => res.data)
       .then(async val => {
         await this.setState(_.pick(val, ['incomingConnections']));
+        this.setState({ filteredResult: this.state.incomingConnections });
       })
       .catch(err => console.log(err));
+  }
+
+  async handleSearch(event) {
+    await this.setState({ search: event.target.value });
+    if (this.state.search !== '') {
+      const cards = _.filter(this.state.incomingConnections, card =>
+        _.startsWith(card.name, this.state.search) ? true : false
+      );
+      this.setState({ incomingConnections: cards });
+    } else {
+      this.setState({ incomingConnections: this.state.filteredResult });
+    }
   }
 
   handleClickOpen() {
@@ -58,12 +73,14 @@ export class Dashboard extends React.Component {
           <Paper className=" row col-10 col-md-8 col-lg-6 mx-auto px-0">
             <InputBase
               className="bg-light col-10 col-md-11"
-              placeholder="Name / Email / Username"
+              placeholder="Name"
+              autoFocus={true}
+              value={this.state.search}
+              onChange={this.handleSearch}
             />
             <button
               className="btn btn-warning col-2 col-md-1"
               aria-label="Search"
-              secondary
             >
               <SearchIcon className="mx-auto" />
             </button>
@@ -73,12 +90,9 @@ export class Dashboard extends React.Component {
           <div className="d-flex flex-wrap justify-content-center">
             {this.state.incomingConnections ? (
               _.map(this.state.incomingConnections, card => (
-              <div className="mx-5 mt-5">
-                <Card
-                  variant={card.variant}
-                  details={card}
-                />
-              </div>
+                <div className="mx-5 mt-5" key={card.email}>
+                  <Card variant={card.variant} details={card} />
+                </div>
               ))
             ) : (
               <div />
@@ -96,7 +110,7 @@ export class Dashboard extends React.Component {
         <InputDialog
           open={this.state.open}
           handleClose={this.handleClose}
-          userId={this.props.match.params.userId} 
+          userId={this.props.match.params.userId}
         />
       </AppWrapper>
     );

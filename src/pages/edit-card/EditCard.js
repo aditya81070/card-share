@@ -1,17 +1,17 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import * as _ from 'lodash';
 
 // Material UI
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import AppWrapper from '../../components/wrapper/AppWrapper';
-import InputField from '../../components/widgets/InputField';
-import Button from '../../components/widgets/Button';
+import { TertiaryTextField as InputField } from '../../components/widgets/InputField';
+import { PrimaryButton } from '../../components/widgets/Button';
 
 import { URL } from '../../config';
+import { transform } from '../../utils/transform';
 
 export class EditCard extends React.Component {
   constructor(props) {
@@ -19,20 +19,18 @@ export class EditCard extends React.Component {
 
     this.state = {
       redirect: false,
-      fields: [
-        'name',
-        'email',
-        'username',
-        'contact',
-        'alternateContact',
-        'variant',
-        'picture',
-        'addressOffice',
-        'addressHome',
-        'company',
-        'designation',
-        'website'
-      ]
+      name: '',
+      email: '',
+      username: '',
+      contact: '',
+      alternateContact: '',
+      variant: '',
+      picture: '',
+      addressOffice: '',
+      addressHome: '',
+      company: '',
+      designation: '',
+      website: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,7 +47,7 @@ export class EditCard extends React.Component {
     })
       .then(res => res.data)
       .then(val => {
-        this.setState(_.pick(val, this.state.fields));
+        this.setState(transform(val));
       })
       .catch(err => console.log(err));
   }
@@ -66,7 +64,7 @@ export class EditCard extends React.Component {
     axios({
       method: 'patch',
       url: `${URL}/users/${this.props.match.params.userId}`,
-      data: { ..._.pick(this.state, this.state.fields) },
+      data: transform(this.state),
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       config: { headers: { 'Content-Type': 'application/json' } }
     })
@@ -97,7 +95,7 @@ export class EditCard extends React.Component {
             >
               Design Your Card
             </Typography>
-            <form className="w-75 mx-auto">
+            <form className="w-75 mx-auto" onSubmit={this.handleSubmit}>
               <InputField
                 name="name"
                 label="Name"
@@ -107,8 +105,9 @@ export class EditCard extends React.Component {
                 type="text"
                 value={this.state.name}
                 onChange={this.handleChange}
-                tertiary
-                required
+                required={true}
+                autoComplete="on"
+                autoFocus={true}
               />
               <InputField
                 name="email"
@@ -119,8 +118,8 @@ export class EditCard extends React.Component {
                 type="email"
                 value={this.state.email}
                 onChange={this.handleChange}
-                tertiary
-                required
+                required={true}
+                autoComplete="on"
               />
               <InputField
                 name="contact"
@@ -131,7 +130,7 @@ export class EditCard extends React.Component {
                 type="tel"
                 value={this.state.contact}
                 onChange={this.handleChange}
-                tertiary
+                autoComplete="on"
               />
               <InputField
                 name="alternateContact"
@@ -142,7 +141,7 @@ export class EditCard extends React.Component {
                 type="tel"
                 value={this.state.alternateContact}
                 onChange={this.handleChange}
-                tertiary
+                autoComplete="on"
               />
               <InputField
                 name="addressOffice"
@@ -153,7 +152,7 @@ export class EditCard extends React.Component {
                 type="text"
                 value={this.state.addressOffice}
                 onChange={this.handleChange}
-                tertiary
+                autoComplete="on"
               />
               <InputField
                 name="addressHome"
@@ -164,7 +163,7 @@ export class EditCard extends React.Component {
                 type="text"
                 value={this.state.addressHome}
                 onChange={this.handleChange}
-                tertiary
+                autoComplete="on"
               />
               <InputField
                 name="company"
@@ -175,7 +174,7 @@ export class EditCard extends React.Component {
                 type="text"
                 value={this.state.company}
                 onChange={this.handleChange}
-                tertiary
+                autoComplete="on"
               />
               <InputField
                 name="designation"
@@ -186,8 +185,7 @@ export class EditCard extends React.Component {
                 type="text"
                 value={this.state.designation}
                 onChange={this.handleChange}
-                tertiary
-                required
+                autoComplete="on"
               />
               <InputField
                 name="website"
@@ -198,15 +196,10 @@ export class EditCard extends React.Component {
                 type="url"
                 value={this.state.website}
                 onChange={this.handleChange}
-                tertiary
               />
-              <Button
-                className="my-4"
-                type="submit"
-                onClick={this.handleSubmit}
-              >
+              <PrimaryButton className="my-4" type="submit">
                 Save Details
-              </Button>
+              </PrimaryButton>
             </form>
           </Paper>
         </AppWrapper>

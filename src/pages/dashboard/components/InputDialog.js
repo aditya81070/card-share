@@ -6,8 +6,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import { withStyles } from '@material-ui/core/styles';
-import InputField from '../../../components/widgets/InputField';
-import Button from '../../../components/widgets/Button';
+import { TertiaryTextField as InputField } from '../../../components/widgets/InputField';
+import { PrimaryButton } from '../../../components/widgets/Button';
 
 import { URL } from '../../../config';
 
@@ -64,26 +64,28 @@ class InputDialog extends React.Component {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Add Card</DialogTitle>
+        <form>
         <DialogContent>
           <InputField
-            autoFocus
+            autoFocus={true}
             margin="dense"
             name="username"
             label="Username"
             type="text"
             onChange={this.handleChange}
             fullWidth
-            tertiary
+            required={true}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleSubmit} color="primary">
+          <PrimaryButton onClick={this.handleSubmit} color="primary">
             Submit
-          </Button>
-          <Button onClick={this.props.handleClose} color="primary">
+          </PrimaryButton>
+          <PrimaryButton onClick={this.props.handleClose} color="primary">
             Close
-          </Button>
+          </PrimaryButton>
         </DialogActions>
+        </form>
       </Dialog>
     );
   }

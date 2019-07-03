@@ -7,8 +7,8 @@ import { Redirect } from 'react-router-dom';
 // Material UI Components
 import Typography from '@material-ui/core/Typography';
 
-import InputField from '../../../components/widgets/InputField';
-import Button from '../../../components/widgets/Button';
+import { SecondaryTextField as InputField } from '../../../components/widgets/InputField';
+import { SecondaryButton as Button } from '../../../components/widgets/Button';
 import InputDialog from './InputDialog';
 import SocialButton from '../../../components/widgets/SocialButton';
 import LoginImg from '../../../assets/img/backgrounds/login.png';
@@ -78,7 +78,10 @@ class LoginPage extends React.Component {
               >
                 Login
               </Typography>
-              <form className="w-75 justify-content-center mx-auto">
+              <form
+                className="w-75 justify-content-center mx-auto"
+                onSubmit={this.handleSubmit}
+              >
                 <InputField
                   name="email"
                   label="Email"
@@ -87,7 +90,9 @@ class LoginPage extends React.Component {
                   margin="normal"
                   type="email"
                   onChange={this.handleChange}
-                  secondary
+                  required={true}
+                  autoComplete="on"
+                  autoFocus={true}
                 />
                 <InputField
                   name="password"
@@ -97,20 +102,15 @@ class LoginPage extends React.Component {
                   margin="normal"
                   type="password"
                   onChange={this.handleChange}
-                  secondary
+                  required={true}
+                  autoComplete="on"
                 />
                 <div className="w-100 btn-cont my-3">
-                  <Button
-                    secondary
-                    className="float-left p-2"
-                    onClick={this.handleSubmit}
-                  >
+                  <Button className="float-left p-2" type="submit">
                     Login
                   </Button>
                   <Link to="/signup">
-                    <Button secondary className="float-right p-2">
-                      Sign Up
-                    </Button>
+                    <Button className="float-right p-2">Sign Up</Button>
                   </Link>
                 </div>
                 <Typography
@@ -141,10 +141,7 @@ class LoginPage extends React.Component {
               />
             </div>
           </div>
-          <InputDialog
-            open={this.state.open}
-            handleClose={this.handleClose}
-          />
+          <InputDialog open={this.state.open} handleClose={this.handleClose} />
         </div>
       );
     } else {
