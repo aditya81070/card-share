@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import AppWrapper from '../../components/wrapper/AppWrapper';
 import { TertiaryTextField as InputField } from '../../components/widgets/InputField';
 import { PrimaryButton as Button } from '../../components/widgets/Button';
-import AvtarInput from '../../components/widgets/AvtarInput';
+import AvtarInput from './components/AvtarInput';
+import Avtar from '../../assets/img/avtar/avtar.png';
 
 import { URL } from '../../config';
 import { transform } from '../../utils/transform' 
@@ -22,10 +23,12 @@ export class Profile extends React.Component {
       name: '',
       email: '',
       username: '',
-      contact: ''
+      contact: '',
+      picture: Avtar
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handelFileSelect = this.handelFileSelect.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +42,7 @@ export class Profile extends React.Component {
       .then(res => res.data)
       .then(val => {
         this.setState(transform(val));
+        this.setState({ id: val.id }) 
       })
       .catch(err => console.log(err));
   }
@@ -71,6 +75,28 @@ export class Profile extends React.Component {
       .catch(err => console.log(err));
   }
 
+  handelFileSelect(files) {
+    let data = new FormData();
+    data.append(this.state.id, files[0]);
+    axios({
+      method: 'post',
+      url: `${URL}/users/upload`,
+      data: data,
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    })
+      .then(res => res.data)
+      .then(val => {
+        console.log('this is called')
+        if (val) {
+          this.setState({ picture: ''})
+          this.setState({picture: val.picture});
+        console.log(val)
+        console.log(this.state)
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     if (!this.state.redirect) {
       return (
@@ -87,7 +113,7 @@ export class Profile extends React.Component {
               Edit Profile
             </Typography>
             <form className="w-75 mx-auto" onSubmit={this.handleSubmit}>
-              <AvtarInput />
+              <AvtarInput picture={this.state.picture} handelFileSelect={this.handelFileSelect} />
               <InputField
                 name="name"
                 label="Name"

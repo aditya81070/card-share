@@ -1,17 +1,14 @@
 import React from 'react';
 
-// Material UI
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/EditOutlined';
-
-import Avtar from '../../assets/img/avtar/amrit.jpeg';
 
 class AvtarInput extends React.Component {
   render() {
     return (
       <div className="avtar-img-cont">
         <img
-          src={Avtar}
+          src={this.props.picture}
           alt="default avtar"
           className="rounded-circle avtar-img"
         />
@@ -21,6 +18,7 @@ class AvtarInput extends React.Component {
             className="d-none"
             id="icon-button-file"
             type="file"
+            onChange={e => this.props.handelFileSelect(e.target.files)}
           />
           <label htmlFor="icon-button-file" className="icon">
             <IconButton color="primary" component="span">
