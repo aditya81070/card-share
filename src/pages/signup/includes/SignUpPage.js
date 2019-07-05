@@ -4,6 +4,8 @@ import axios from 'axios';
 import * as _ from 'lodash';
 import { Redirect } from 'react-router-dom';
 import { URL } from '../../../config';
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 
 // Material UI Components
 import Typography from '@material-ui/core/Typography';
@@ -48,6 +50,8 @@ class SignUpPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleGoogleSignup = this.handleGoogleSignup.bind(this);
+    this.handleFacebookSignup = this.handleFacebookSignup.bind(this);
   }
 
   handleChange(event) {
@@ -83,6 +87,44 @@ class SignUpPage extends React.Component {
   }
   handleClose() {
     this.setState({ open: false });
+  }
+
+  handleGoogleSignup(res) {
+    axios({
+      method: 'post',
+      url: `${URL}/auth/google`,
+      data: { access_token: res.accessToken },
+      config: { headers: { 'Content-Type': 'application/json' } }
+    })
+      .then(res => res.data)
+      .then(val => {
+        localStorage.setItem('token', val.token.accessToken);
+        localStorage.setItem('userId', val.user.id);
+        this.setState({
+          redirect: true,
+          redirectPath: `/select-card/${val.user.id}`
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  handleFacebookSignup(res) {
+    axios({
+      method: 'post',
+      url: `${URL}/auth/facebook`,
+      data: { access_token: res.accessToken },
+      config: { headers: { 'Content-Type': 'application/json' } }
+    })
+      .then(res => res.data)
+      .then(val => {
+        localStorage.setItem('token', val.token.accessToken);
+        localStorage.setItem('userId', val.user.id);
+        this.setState({
+          redirect: true,
+          redirectPath: `/select-card/${val.user.id}`
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -197,28 +239,40 @@ class SignUpPage extends React.Component {
                   </Link>
                 </div>
                 <div className="row justify-content-center my-4">
-                  <Link to="/select-card">
-                    <SecondaryButton className="float-left p-2 social-btn">
-                      <img
-                        src={GoogleIcon}
-                        alt="google icon"
-                        className="mr-2"
-                      />
-                      Sign Up with Google
-                    </SecondaryButton>
-                  </Link>
+                  <GoogleLogin
+                    clientId="447127459950-t6p0gajeepoqdg88l20nqpbmalpnkca8.apps.googleusercontent.com"
+                    onSuccess={this.handleGoogleSignup}
+                    render={renderProps => (
+                      <SecondaryButton
+                        className="float-left p-2 social-btn"
+                        onClick={renderProps.onClick}
+                      >
+                        <img
+                          src={GoogleIcon}
+                          alt="google icon"
+                          className="mr-2"
+                        />
+                        Sign Up with Google
+                      </SecondaryButton>
+                    )}
+                  />
                 </div>
                 <div className="row justify-content-center my-4">
-                  <Link to="/select-card">
-                    <SecondaryButton className="float-left p-2 social-btn">
-                      <img
-                        src={FacebookIcon}
-                        alt="facebook icon"
-                        className="mr-2"
-                      />
-                      Sign Up with Facebook
-                    </SecondaryButton>
-                  </Link>
+                  <FacebookLogin
+                    appId="906865123023704"
+                    textButton={
+                      <SecondaryButton className="float-left p-2 social-btn">
+                        <img
+                          src={FacebookIcon}
+                          alt="facebook icon"
+                          className="mr-2"
+                        />
+                        Sign Up with Facebook
+                      </SecondaryButton>
+                    }
+                    cssClass="m-0 p-0"
+                    callback={this.handleFacebookSignup}
+                  />
                 </div>
               </form>
             </div>

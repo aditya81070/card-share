@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import * as _ from 'lodash';
 import { Redirect } from 'react-router-dom';
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 
 // Material UI Components
 import Typography from '@material-ui/core/Typography';
@@ -10,8 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import { SecondaryTextField as InputField } from '../../../components/widgets/InputField';
 import { SecondaryButton as Button } from '../../../components/widgets/Button';
 import InputDialog from './InputDialog';
-import SocialButton from '../../../components/widgets/SocialButton';
 import LoginImg from '../../../assets/img/backgrounds/login.png';
+import GoogleIcon from '../../../assets/img/icons/google.png';
+import FacebookIcon from '../../../assets/img/icons/fb.png';
 
 import { URL } from '../../../config';
 
@@ -27,6 +30,8 @@ class LoginPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleFacebookSignup = this.handleFacebookSignup.bind(this);
+    this.handleGoogleSignup = this.handleGoogleSignup.bind(this);
   }
 
   async handleChange(event) {
@@ -63,6 +68,44 @@ class LoginPage extends React.Component {
   }
   handleClose() {
     this.setState({ open: false });
+  }
+
+  handleGoogleSignup(res) {
+    axios({
+      method: 'post',
+      url: `${URL}/auth/google`,
+      data: { access_token: res.accessToken },
+      config: { headers: { 'Content-Type': 'application/json' } }
+    })
+      .then(res => res.data)
+      .then(val => {
+        localStorage.setItem('token', val.token.accessToken);
+        localStorage.setItem('userId', val.user.id);
+        this.setState({
+          redirect: true,
+          redirectPath: `/dashboard/${val.user.id}`
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  handleFacebookSignup(res) {
+    axios({
+      method: 'post',
+      url: `${URL}/auth/facebook`,
+      data: { access_token: res.accessToken },
+      config: { headers: { 'Content-Type': 'application/json' } }
+    })
+      .then(res => res.data)
+      .then(val => {
+        localStorage.setItem('token', val.token.accessToken);
+        localStorage.setItem('userId', val.user.id);
+        this.setState({
+          redirect: true,
+          redirectPath: `/dashboard/${val.user.id}`
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -122,14 +165,40 @@ class LoginPage extends React.Component {
                   Forgot Password?
                 </Typography>
                 <div className="row justify-content-center my-4">
-                  <Link to="/dashboard">
-                    <SocialButton variant="google" />
-                  </Link>
+                  <GoogleLogin
+                    clientId="447127459950-t6p0gajeepoqdg88l20nqpbmalpnkca8.apps.googleusercontent.com"
+                    onSuccess={this.handleGoogleSignup}
+                    render={renderProps => (
+                      <Button
+                        className="float-left p-2 social-btn"
+                        onClick={renderProps.onClick}
+                      >
+                        <img
+                          src={GoogleIcon}
+                          alt="google icon"
+                          className="mr-2"
+                        />
+                        Login with Google
+                      </Button>
+                    )}
+                  />{' '}
                 </div>
                 <div className="row justify-content-center my-4">
-                  <Link to="/dashboard">
-                    <SocialButton variant="facebook" />
-                  </Link>
+                  <FacebookLogin
+                    appId="906865123023704"
+                    textButton={
+                      <Button className="float-left p-2 social-btn">
+                        <img
+                          src={FacebookIcon}
+                          alt="facebook icon"
+                          className="mr-2"
+                        />
+                        Sign Up with Facebook
+                      </Button>
+                    }
+                    cssClass="m-0 p-0"
+                    callback={this.handleFacebookSignup}
+                  />
                 </div>
               </form>
             </div>
