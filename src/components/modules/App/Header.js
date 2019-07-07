@@ -12,7 +12,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import MenuIcon from '@material-ui/icons/MenuSharp';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import SideDrawer from './SideDrawer';
 
@@ -139,15 +138,6 @@ class Header extends React.Component {
             </Typography>
             <div className={classes.grow} />
             <div>
-              <div className="d-inline-block user-icon">
-                <Typography variant="h6" className="d-inline">
-                  username
-                </Typography>
-                <IconButton color="inherit">
-                  <AccountCircle fontSize="large" />
-                </IconButton>
-              </div>
-
               <IconButton
                 aria-haspopup="true"
                 onClick={this.handleMenuOpen}

@@ -49,7 +49,6 @@ class InputDialog extends React.Component {
     })
       .then(res => res)
       .then(val => {
-        console.log(val);
         this.props.handleClose();
       })
       .catch(err => console.log(err));

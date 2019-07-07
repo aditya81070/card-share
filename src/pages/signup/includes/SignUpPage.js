@@ -13,8 +13,6 @@ import MuiDialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import TickIcon from '@material-ui/icons/DoneOutline';
 import { withStyles } from '@material-ui/core/styles';
 
 // File Imports
@@ -206,13 +204,6 @@ class SignUpPage extends React.Component {
                   className="w-100 my-3"
                   margin="normal"
                   type="text"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <TickIcon className="text-light" />
-                      </InputAdornment>
-                    )
-                  }}
                   onChange={this.handleChange}
                   autoComplete="on"
                   required={true}

@@ -13,7 +13,7 @@ import AvtarInput from './components/AvtarInput';
 import Avtar from '../../assets/img/avtar/avtar.png';
 
 import { URL } from '../../config';
-import { transform } from '../../utils/transform' 
+import { transform } from '../../utils/transform';
 export class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -23,8 +23,7 @@ export class Profile extends React.Component {
       name: '',
       email: '',
       username: '',
-      contact: '',
-      picture: Avtar
+      contact: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -42,7 +41,7 @@ export class Profile extends React.Component {
       .then(res => res.data)
       .then(val => {
         this.setState(transform(val));
-        this.setState({ id: val.id }) 
+        this.setState({ id: val.id });
       })
       .catch(err => console.log(err));
   }
@@ -82,16 +81,13 @@ export class Profile extends React.Component {
       method: 'post',
       url: `${URL}/users/upload`,
       data: data,
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => res.data)
       .then(val => {
-        console.log('this is called')
         if (val) {
-          this.setState({ picture: ''})
-          this.setState({picture: val.picture});
-        console.log(val)
-        console.log(this.state)
+          this.setState({ picture: '' });
+          this.setState({ picture: val.picture });
         }
       })
       .catch(err => console.log(err));
@@ -113,7 +109,10 @@ export class Profile extends React.Component {
               Edit Profile
             </Typography>
             <form className="w-75 mx-auto" onSubmit={this.handleSubmit}>
-              <AvtarInput picture={this.state.picture} handelFileSelect={this.handelFileSelect} />
+              <AvtarInput
+                picture={this.state.picture === '' ? Avtar : this.state.picture}
+                handelFileSelect={this.handelFileSelect}
+              />
               <InputField
                 name="name"
                 label="Name"

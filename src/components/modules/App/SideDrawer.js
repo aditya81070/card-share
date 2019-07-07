@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 // Material UI
 import { withStyles } from '@material-ui/core/styles';
@@ -9,9 +10,11 @@ import Typography from '@material-ui/core/Typography';
 
 // File Imports
 import InputDialog from './InputDialog';
-import Avtar from '../../../assets/img/avtar/amrit.jpeg';
+import Avtar from '../../../assets/img/avtar/avtar.png';
 import QR from '../../../assets/img/qr.png';
 import { PrimaryButton } from '../../widgets/Button';
+import {URL} from '../../../config';
+import { transform } from '../../../utils/transform'; 
 
 const styles = {
   list: {
@@ -32,6 +35,21 @@ class SideDrawer extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
+  componentDidMount() {
+    axios({
+      method: 'get',
+      url: `${URL}/users/${localStorage.getItem('userId')}`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(res => res.data)
+      .then(async val => {
+        await this.setState(transform(val));
+      })
+      .catch(err => console.log(err));
+  }
+
   handleClickOpen() {
     this.state.open
       ? this.setState({ open: false })
@@ -42,6 +60,7 @@ class SideDrawer extends React.Component {
   }
 
   render() {
+    console.log(this.state.username)
     const sideList = (
       <div
         className="side-drawer text-center justify-content-center"
@@ -49,10 +68,10 @@ class SideDrawer extends React.Component {
         onClick={this.props.handleClose}
         onKeyDown={this.props.handleClose}
       >
-        <img src={Avtar} alt="avtar" className="avtar my-4" />
-        <Typography variant="h5">Full Name</Typography>
+        <img src={this.state.picture==="" ? Avtar : this.state.picture} alt="avtar" className="avtar my-4" />
+        <Typography variant="h5">{this.state.name}</Typography>
         <Typography variant="h6" className="mb-2">
-          sample@email.com
+          {`@${this.state.username}`}
         </Typography>
         <Divider />
         <img src={QR} alt="QR code" className="col-8" />
